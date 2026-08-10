@@ -1,7 +1,7 @@
 import { DiscordStatus, SuspenseFallback } from "@/components/discord";
 import { StackProgress } from "@/components/stack-progress";
 import { Card } from "fumadocs-ui/components/card";
-import { Clock12, GraduationCap, Linkedin, type LucideIcon, Mail, ScanEye, Sparkle, Sparkles } from "lucide-react";
+import { Clock12, GraduationCap, Linkedin, type LucideIcon, Mail, ScanEye, Sparkle, Sparkles, Twitter } from "lucide-react";
 import { Suspense } from "react";
 import {
 	Astro,
@@ -79,7 +79,14 @@ export default function Home() {
 			display: "incognitotgt",
 			Icon: GitHub,
 			color: "text-text",
-		},
+    },
+    {
+      name: "Twitter",
+      link: "https://twitter.com/mash00r",
+      display: "@mash00r",
+      Icon: Twitter,
+      color: "text-blue"
+    },
 		{
 			name: "Bluesky",
 			link: "https://bsky.app/profile/incognitotgt.me",
@@ -90,7 +97,7 @@ export default function Home() {
     {
       name: 'Linkedin',
       link: 'https://linkedin.com/in/mashoor-ahmed',
-      display: 'because why not',
+      display: "disabled for now",
       Icon: Linkedin,
       color: 'text-blue'
 		}
