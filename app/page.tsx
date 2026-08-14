@@ -122,7 +122,6 @@ export default function Home() {
 		<div className="w-full px-4 py-4 sm:px-6 sm:py-6">
 			<div className="mx-auto flex w-full max-w-3xl flex-col gap-8 text-sm">
 				<section className="flex flex-col gap-4">
-					<h2 className="text-2xl text-mauve font-bold">about</h2>
 					<p className="leading-relaxed">
 						i'm a 15y software engineer based in the dc area! i currently work as the cofounder and cio at indicia,
           where we build ai powered intelligence solutions for finding information online.
