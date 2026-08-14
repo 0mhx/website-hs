@@ -123,7 +123,7 @@ export default function Home() {
 			<div className="mx-auto flex w-full max-w-3xl flex-col gap-8 text-sm">
 				<section className="flex flex-col gap-4">
 					<p className="leading-relaxed">
-						i'm a 15y software engineer based in the dc area! i currently work as the cofounder and cio at <Link href="https://indicia.app" rel="noopener" className="text-blue hover:text-sky active:text-red font-bold">indicia</Link>,
+						i'm a 15y software engineer based in the dc area! i currently work as the cofounder and cio at <Link href="https://indicia.app" rel="noopener" target="_blank" className="text-blue hover:text-sky active:text-red font-bold">indicia</Link>,
           where we build ai powered intelligence solutions for finding information online.
           <br />
           <br />
