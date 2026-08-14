@@ -78,6 +78,12 @@ export async function generateMetadata(props: { params: Promise<{ slug?: string[
 
 	return {
 		title: page?.data.title,
-		description: page?.data.description,
+    description: page?.data.description,
+    openGraph: {
+      title: page?.data.title,
+      description: page?.data.description,
+      url: `https://mashoorah.me/blog/${page?.slugs.join("/")}`,
+      siteName: "mashoor a",
+    },
 	} satisfies Metadata;
 }
