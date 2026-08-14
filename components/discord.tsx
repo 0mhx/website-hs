@@ -16,7 +16,7 @@ export function DiscordStatus() {
 	} = useLanyard({
 		userId: "1091735539025203220",
 		// userId: "1053443057451794585",
-		apiUrl: `${process.env.NODE_ENV === "production" ? "www.incognitotgt.me" : "localhost:3001"}/lanyard`,
+		apiUrl: `${process.env.NODE_ENV === "production" ? "www.mashoorah.me" : "localhost:3001"}/lanyard`,
 	});
 	if (isLoading || isValidating || !status) return <SuspenseFallback />;
 	const customStatus = status.activities.find((activity) => activity.type === 4);
