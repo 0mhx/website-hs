@@ -1,12 +1,12 @@
 import { DiscordStatus, SuspenseFallback } from "@/components/discord";
 import { Card } from "fumadocs-ui/components/card";
 import {
-GraduationCap,
+	GraduationCap,
 	Linkedin,
 	type LucideIcon,
 	Mail,
 	ScanEye,
-  Sparkles,
+	Sparkles,
 	Twitter,
 } from "lucide-react";
 import { Suspense } from "react";
@@ -16,6 +16,8 @@ import {
 	GitHub,
 	Signal,
 } from "./icons";
+import Link from "next/link";
+
 type Contact = {
 	name: string;
 	link: string;
@@ -23,124 +25,145 @@ type Contact = {
 	Icon: React.FC<React.SVGProps<SVGSVGElement>> | LucideIcon;
 	color: string;
 };
+
 export default function Home() {
 	const projects: {
 		name: string;
 		description: string;
 		link: string;
-		Icon?: React.FC<React.SVGProps<SVGSVGElement>> | LucideIcon;
+    Icon?: React.FC<React.SVGProps<SVGSVGElement>> | LucideIcon;
+		color: string;
 	}[] = [
 		{
-			name: "Indicia",
-			description: "osint tool for searching up things",
+			name: "indicia (current)",
+			description: "ai powered open source intelligence",
 			link: "indiciateam",
-			Icon: ScanEye,
+      Icon: ScanEye,
+			color: "text-teal",
 		},
 		{
-			name: "Stardust",
-			description: "isolated, disposable workspaces (kinda dead, hmu if you want to maintain)",
+			name: "stardust",
+			description:
+				"isolated, disposable workspaces (kinda dead, hmu if you want to maintain)",
 			link: "aetherra/stardust",
-			Icon: Sparkles,
+      Icon: Sparkles,
+			color: "text-yellow",
 		},
 		{
 			name: "schoology-frontend",
-			description: "alternative frontend for schoology (wip, unmaintained)",
-			link: "incognitotgt/schoology-frontend",
-			Icon: GraduationCap,
+			description:
+				"alternative frontend for schoology (wip, unmaintained)",
+			link: "0mhx/schoology-frontend",
+      Icon: GraduationCap,
+			color: "text-blue",
 		},
 	];
+
 	const contact: Contact[] = [
 		{
-			name: "Email - primary",
+			name: "email - primary",
 			link: "mailto:contact@mashoorah.me",
 			display: "contact@mashoorah.me",
 			Icon: Mail,
 			color: "text-yellow",
 		},
 		{
-			name: "Email - work",
+			name: "email - work",
 			link: "mailto:m@indicia.app",
 			display: "m@indicia.app",
 			Icon: Mail,
 			color: "text-yellow",
 		},
 		{
-			name: "Discord",
+			name: "discord",
 			link: "https://discord.com/users/1091735539025203220",
 			display: "0mhx",
 			Icon: Discord,
 			color: "text-lavender",
 		},
 		{
-			name: "Signal",
+			name: "signal",
 			link: "https://signal.me/#eu/Kf52oLQ2pC8glop6IBOjRUYDfeyCZ5TIleAw1VQrgUkWVDcljKdJjoYaWPlip8qg",
 			display: "mhx.01",
 			Icon: Signal,
 			color: "fill-blue",
 		},
 		{
-			name: "GitHub",
-			link: "https://github.com/incognitotgt",
-			display: "incognitotgt",
+			name: "github",
+			link: "https://github.com/0mhx",
+			display: "0mhx",
 			Icon: GitHub,
 			color: "text-text",
 		},
 		{
-			name: "Twitter",
+			name: "twitter/x",
 			link: "https://twitter.com/mash00r",
 			display: "@mash00r",
 			Icon: Twitter,
 			color: "text-blue",
 		},
 		{
-			name: "Bluesky",
+			name: "bluesky",
 			link: "https://bsky.app/profile/incognitotgt.me",
 			display: "incognitotgt.me",
 			Icon: Bluesky,
 			color: "text-sky",
 		},
 		{
-			name: "Linkedin",
+			name: "linkedin",
 			link: "https://linkedin.com/in/mashoor-ahmed",
 			display: "disabled for now",
 			Icon: Linkedin,
 			color: "text-blue",
 		},
 	];
+
 	return (
-		<div className="p-2 flex flex-col text-md gap-2 md:px-72">
-			<div className="flex w-full flex-col gap-4">
-					<h2 className="text-2xl text-mauve">about</h2>
-					<p className="md:mr-4">
+		<div className="w-full px-4 py-4 sm:px-6 sm:py-6">
+			<div className="mx-auto flex w-full max-w-3xl flex-col gap-8 text-sm">
+				<section className="flex flex-col gap-4">
+					<h2 className="text-2xl text-mauve font-bold">about</h2>
+					<p className="leading-relaxed">
 						i'm a 15y software engineer based in the dc area! i currently work as the cofounder and cio at indicia,
           where we build ai powered intelligence solutions for finding information online.
           <br />
           <br />
-          in my free time i sometimes tinker with random software, which sometimes has led to finding security vulnerabilities - check out the blog for some of my writeups!
+          in my free time i sometimes tinker with random software, which sometimes has led to finding security vulnerabilities - check out the <Link href="/blog" className="text-blue hover:text-sky active:text-red font-bold">blog</Link> for some insane stuff
 					</p>
-					<ul className="list-disc list-inside">
+
+					<ul className="list-inside list-disc space-y-1">
 						<li>muslim</li>
 						<li>cross country / track</li>
 						<li>planning to major in islamic studies + computer science</li>
-					</ul>
-					<h2 className="text-2xl text-mauve">projects</h2>
-					<div className="flex flex-wrap gap-2">
-						{projects.map(({ Icon, ...project }) => (
+          </ul>
+          <br />
+					feel free to contact me regarding anything on the platforms below
+				</section>
+
+				<section className="flex flex-col gap-4">
+					<h2 className="text-2xl text-mauve font-bold">projects</h2>
+
+					<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+						{projects.map(({ Icon,color, ...project }) => (
 							<Card
-								className="w-auto min-w-36 max-w-56"
+								className={`w-full ${color}`}
 								title={project.name}
 								description={project.description}
 								href={`https://github.com/${project.link}`}
 								key={project.name}
-								icon={Icon && <Icon />}
+                icon={Icon && <Icon className={color} />}
 							/>
 						))}
 					</div>
-					<h2 className="text-2xl text-mauve">contact</h2>
-					<div className="flex flex-wrap gap-2 items-center">
+				</section>
+
+				<section className="flex flex-col gap-4">
+					<h2 className="text-2xl text-mauve font-bold">contact</h2>
+
+					<div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
 						{contact.map(({ name, display, link, Icon, color }) => (
 							<Card
-								className="min-w-48 max-w-56"
+								className="w-full"
 								title={name}
 								description={display}
 								href={link}
@@ -149,10 +172,19 @@ export default function Home() {
 							/>
 						))}
 					</div>
-					<h2 className="text-2xl text-mauve">what im up to right now</h2>
-					<Suspense fallback={<SuspenseFallback />}>
-						<DiscordStatus />
-					</Suspense>
+				</section>
+
+				<section className="flex flex-col gap-4">
+					<h2 className="text-2xl text-mauve font-bold">
+						what im up to right now
+					</h2>
+
+					<div className="w-full overflow-hidden">
+						<Suspense fallback={<SuspenseFallback />}>
+							<DiscordStatus />
+						</Suspense>
+					</div>
+				</section>
 			</div>
 		</div>
 	);

@@ -3,7 +3,7 @@ import Link from "next/link";
 import logo from "./icon.jpg";
 export default function Nav() {
 	return (
-		<nav className="h-16 fixed bg-mantle/80 p-4 flex flex-row justify-between border-b border-mauve w-full backdrop-blur-xl gap-4 z-20">
+		<nav className="h-16 fixed bg-mantle/80 p-4 flex flex-row justify-between border-b border-mauve w-full backdrop-blur-xl gap-4 z-[2147483647]">
 			{" "}
 			<Link
 				href="/"
