@@ -1,22 +1,20 @@
 import { DiscordStatus, SuspenseFallback } from "@/components/discord";
-import { StackProgress } from "@/components/stack-progress";
 import { Card } from "fumadocs-ui/components/card";
-import { Clock12, GraduationCap, Linkedin, type LucideIcon, Mail, ScanEye, Sparkle, Sparkles, Twitter } from "lucide-react";
+import {
+GraduationCap,
+	Linkedin,
+	type LucideIcon,
+	Mail,
+	ScanEye,
+  Sparkles,
+	Twitter,
+} from "lucide-react";
 import { Suspense } from "react";
 import {
-	Astro,
 	Bluesky,
 	Discord,
 	GitHub,
-	JavaScript,
-	NextJS,
-	Python,
-	ReactJS,
 	Signal,
-	SolidJS,
-	Svelte,
-	Swift,
-	TypeScript,
 } from "./icons";
 type Contact = {
 	name: string;
@@ -40,7 +38,7 @@ export default function Home() {
 		},
 		{
 			name: "Stardust",
-			description: "isolated, disposable workspaces",
+			description: "isolated, disposable workspaces (kinda dead, hmu if you want to maintain)",
 			link: "aetherra/stardust",
 			Icon: Sparkles,
 		},
@@ -53,9 +51,16 @@ export default function Home() {
 	];
 	const contact: Contact[] = [
 		{
-			name: "Email",
-			link: "mailto:tgt@incognitotgt.me",
-			display: "tgt@incognitotgt.me",
+			name: "Email - primary",
+			link: "mailto:contact@mashoorah.me",
+			display: "contact@mashoorah.me",
+			Icon: Mail,
+			color: "text-yellow",
+		},
+		{
+			name: "Email - work",
+			link: "mailto:m@indicia.app",
+			display: "m@indicia.app",
 			Icon: Mail,
 			color: "text-yellow",
 		},
@@ -79,61 +84,50 @@ export default function Home() {
 			display: "incognitotgt",
 			Icon: GitHub,
 			color: "text-text",
-    },
-    {
-      name: "Twitter",
-      link: "https://twitter.com/mash00r",
-      display: "@mash00r",
-      Icon: Twitter,
-      color: "text-blue"
-    },
+		},
+		{
+			name: "Twitter",
+			link: "https://twitter.com/mash00r",
+			display: "@mash00r",
+			Icon: Twitter,
+			color: "text-blue",
+		},
 		{
 			name: "Bluesky",
 			link: "https://bsky.app/profile/incognitotgt.me",
 			display: "incognitotgt.me",
 			Icon: Bluesky,
 			color: "text-sky",
-    },
-    {
-      name: 'Linkedin',
-      link: 'https://linkedin.com/in/mashoor-ahmed',
-      display: "disabled for now",
-      Icon: Linkedin,
-      color: 'text-blue'
-		}
+		},
+		{
+			name: "Linkedin",
+			link: "https://linkedin.com/in/mashoor-ahmed",
+			display: "disabled for now",
+			Icon: Linkedin,
+			color: "text-blue",
+		},
 	];
 	return (
-		<div className="p-2 flex flex-col text-md gap-2">
-			<section>
-				&#x1F54B; | cybersecurity | coo @{" "}
-				<a href="https://indicia.app" className="text-blue active:text-red hover:text-sky duration-150">
-					indicia
-				</a>{" "}
-				| developer @{" "}
-				<a
-					href="https://github.com/aetherra"
-					className="text-blue active:text-red hover:text-sky duration-150"
-				>
-					aetherra
-				</a>
-			</section>
-			<div className="flex w-full md:flex-row flex-col">
-				<section className="md:w-1/2 flex flex-col gap-2">
-					<h2 className="text-2xl text-mauve">random stuff and basic info</h2>
+		<div className="p-2 flex flex-col text-md gap-2 md:px-72">
+			<div className="flex w-full flex-col gap-4">
+					<h2 className="text-2xl text-mauve">about</h2>
+					<p className="md:mr-4">
+						i'm a 15y software engineer based in the dc area! i currently work as the cofounder and cio at indicia,
+          where we build ai powered intelligence solutions for finding information online.
+          <br />
+          <br />
+          in my free time i sometimes tinker with random software, which sometimes has led to finding security vulnerabilities - check out the blog for some of my writeups!
+					</p>
 					<ul className="list-disc list-inside">
-						<li>15</li>
 						<li>muslim</li>
-						<li>wt '29 (artificial intelligence)</li>
-						<li>msa board member</li>
-						<li>state student council + county student council</li>
-						<li>t&f - long distance</li>
+						<li>cross country / track</li>
 						<li>planning to major in islamic studies + computer science</li>
 					</ul>
 					<h2 className="text-2xl text-mauve">projects</h2>
 					<div className="flex flex-wrap gap-2">
 						{projects.map(({ Icon, ...project }) => (
 							<Card
-								className="w-56"
+								className="w-auto min-w-36 max-w-56"
 								title={project.name}
 								description={project.description}
 								href={`https://github.com/${project.link}`}
@@ -142,25 +136,11 @@ export default function Home() {
 							/>
 						))}
 					</div>
-				</section>
-				<section className="md:w-1/2 flex flex-col gap-2">
-					<h2 className="text-2xl text-mauve">languages/stack</h2>
-					<div className="grid grid-cols-2 w-full gap-2">
-						<StackProgress title="JavaScript" progress={80} Icon={JavaScript} />
-						<StackProgress title="TypeScript" progress={85} Icon={TypeScript} />
-						<StackProgress title="Svelte" progress={50} Icon={Svelte} />
-						<StackProgress title="React" progress={95} Icon={ReactJS} />
-						<StackProgress title="Next.js" progress={100} Icon={NextJS} />
-						<StackProgress title="Astro" progress={80} Icon={Astro} />
-						<StackProgress title="SolidJS" progress={60} Icon={SolidJS} />
-						<StackProgress title="Swift" progress={50} Icon={Swift} />
-						<StackProgress title="Python (ew)" progress={20} Icon={Python} />
-					</div>
 					<h2 className="text-2xl text-mauve">contact</h2>
-					<div className="flex flex-wrap gap-2">
+					<div className="flex flex-wrap gap-2 items-center">
 						{contact.map(({ name, display, link, Icon, color }) => (
 							<Card
-								className="w-56"
+								className="min-w-48 max-w-56"
 								title={name}
 								description={display}
 								href={link}
@@ -169,13 +149,11 @@ export default function Home() {
 							/>
 						))}
 					</div>
-				</section>
+					<h2 className="text-2xl text-mauve">what im up to right now</h2>
+					<Suspense fallback={<SuspenseFallback />}>
+						<DiscordStatus />
+					</Suspense>
 			</div>
-			<hr />
-			<h2 className="text-2xl text-mauve">activity</h2>
-			<Suspense fallback={<SuspenseFallback />}>
-				<DiscordStatus />
-			</Suspense>
 		</div>
 	);
 }

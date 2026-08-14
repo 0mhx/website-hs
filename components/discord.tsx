@@ -1,7 +1,7 @@
 "use client";
 
 import { Card } from "fumadocs-ui/components/card";
-import { AudioLines, CircleDashed, Clock, Code, MessageCircle } from "lucide-react";
+import { AudioLines, Clock, Code, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import { type LanyardData, useLanyard } from "react-use-lanyard";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
@@ -30,7 +30,7 @@ export function DiscordStatus() {
 	};
 	return (
 		<Card
-			className="w-96 h-auto"
+			className="min-w-72 max-w-96 h-auto"
 			title={`${status.discord_user.global_name} (${status.discord_user.username})`}
 			icon={
 				<Tooltip>
@@ -56,7 +56,10 @@ export function DiscordStatus() {
 				{customStatus ? (
 					<div className="flex flex-row gap-2 items-center">
 						<MessageCircle className="size-4 text-blue" />
-            <p className="truncate">{customStatus.emoji?.name ?`${customStatus.emoji.name} ` :""}{customStatus.state}</p>
+						<p className="truncate">
+							{customStatus.emoji?.name ? `${customStatus.emoji.name} ` : ""}
+							{customStatus.state}
+						</p>
 					</div>
 				) : null}
 				{listeningActivity ? (
@@ -84,12 +87,7 @@ export function DiscordStatus() {
 								</>
 							) : null}
 						</>
-					) : (
-						<>
-							<CircleDashed className="size-4" />
-							<p>Not doing anything</p>
-						</>
-					)}
+					) : null}
 				</div>
 			</div>
 		</Card>
