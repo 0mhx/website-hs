@@ -127,11 +127,11 @@ export default function Home() {
           where we build ai powered intelligence solutions for finding information online.
           <br />
           <br />
-          in my free time i sometimes tinker with random software, which sometimes has led to finding security vulnerabilities - check out the <Link href="/blog" className="text-blue hover:text-sky active:text-red font-bold">blog</Link> for some insane stuff
+          in my free time i sometimes tinker with random software, which sometimes has led to finding security vulnerabilities - check out my <Link href="/blog" className="text-blue hover:text-sky active:text-red font-bold">blog</Link> for some insane stuff
 					</p>
 
 					<ul className="list-inside list-disc space-y-1">
-						<li>muslim</li>
+						<li>muslim; school msa board</li>
 						<li>cross country / track</li>
 						<li>planning to major in islamic studies + computer science</li>
           </ul>
