@@ -47,8 +47,8 @@ export const GitContributionGraph = ({
 }: {
 	dataPromise: ReturnType<typeof getLatestDevelopmentActivity>;
 }) => {
-	const { contributions: rawData } = use(dataPromise) || {
-		contributions: [],
+	const { contributions: rawData, today } = use(dataPromise) || {
+    contributions: [],
 	};
 
 	const [activeDate, setActiveDate] = useState<string | null>(null);
@@ -65,7 +65,7 @@ export const GitContributionGraph = ({
 			(a, b) => parseISO(a[0]).getTime() - parseISO(b[0]).getTime(),
 		);
 
-		const latestDate = parseISO(sorted[sorted.length - 1][0]);
+    const latestDate = today ? new Date(today) : parseISO(sorted[sorted.length - 1][0]);
 
 		// Show the latest 4 months.
 		const cutoff = subMonths(latestDate, 4);

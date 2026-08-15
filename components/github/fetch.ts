@@ -3,7 +3,8 @@ import { graphql } from "@octokit/graphql";
 
 export async function getLatestDevelopmentActivity(): Promise<{
 	totalContributions: number;
-	contributions: [string, number][];
+  contributions: [string, number][];
+	today: string;
 } | null> {
 	try {
 		const response = await graphql<{
@@ -51,6 +52,7 @@ export async function getLatestDevelopmentActivity(): Promise<{
 		return {
 			totalContributions: contributionCalendar.totalContributions,
 			contributions,
+			today: new Date().toISOString().split("T")[0],
 		};
 	} catch (error) {
 		console.warn("getLatestDevelopmentActivity: Error while fetching latest development activity.", error);
