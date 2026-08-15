@@ -30,7 +30,7 @@ export function DiscordStatus() {
 	};
 	return (
 		<Card
-			className="min-w-72 max-w-96 h-auto"
+			className="min-w-72 h-auto"
 			title={`${status.discord_user.global_name} (${status.discord_user.username})`}
 			icon={
 				<Tooltip>

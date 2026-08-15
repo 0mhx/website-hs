@@ -24,14 +24,9 @@ export default async function Page(props: {
 		<div className="w-full px-4 py-6 sm:px-6 sm:py-8">
 			<DocsBody className="mx-auto mb-8 w-full max-w-3xl">
 				<header className="mb-8">
-					<h1 className="mb-2 text-3xl leading-tight text-mauve">
-						{page.data.title}
-					</h1>
+					<h1 className="mb-2 text-3xl leading-tight text-mauve">{page.data.title}</h1>
 
-					<time
-						dateTime={new Date(page.data.date).toISOString()}
-						className="text-sm text-subtext0"
-					>
+					<time dateTime={new Date(page.data.date).toISOString()} className="text-sm text-subtext0">
 						{new Date(page.data.date).toLocaleDateString()}
 					</time>
 				</header>
@@ -78,12 +73,12 @@ export async function generateMetadata(props: { params: Promise<{ slug?: string[
 
 	return {
 		title: page?.data.title,
-    description: page?.data.description,
-    openGraph: {
-      title: page?.data.title,
-      description: page?.data.description,
-      url: `https://mashoorah.me/blog/${page?.slugs.join("/")}`,
-      siteName: "mashoor a",
-    },
+		description: page?.data.description,
+		openGraph: {
+			title: page?.data.title,
+			description: page?.data.description,
+			url: `https://mashoorah.me/blog/${page?.slugs.join("/")}`,
+			siteName: "mashoor a",
+		},
 	} satisfies Metadata;
 }

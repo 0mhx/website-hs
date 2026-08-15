@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
 	images: {
 		remotePatterns: discordRemotePatterns(["avatars", "icons"]),
 	},
+	cacheComponents: true,
 };
 const mdx = createMDX();
 export default mdx(nextConfig);
