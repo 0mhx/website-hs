@@ -1,6 +1,9 @@
 import { DiscordStatus, SuspenseFallback } from "@/components/discord";
 import { Card } from "fumadocs-ui/components/card";
 import {
+  BrickWall,
+  EyeOff,
+  Fingerprint,
 	GraduationCap,
 	Linkedin,
 	type LucideIcon,
@@ -17,6 +20,7 @@ import {
 	Signal,
 } from "./icons";
 import Link from "next/link";
+import { describe } from "node:test";
 
 type Contact = {
 	name: string;
@@ -26,14 +30,16 @@ type Contact = {
 	color: string;
 };
 
-export default function Home() {
-	const projects: {
+type Misc =  {
 		name: string;
 		description: string;
 		link: string;
-    Icon?: React.FC<React.SVGProps<SVGSVGElement>> | LucideIcon;
+   Icon?: React.FC<React.SVGProps<SVGSVGElement>> | LucideIcon;
 		color: string;
-	}[] = [
+	}
+
+export default function Home() {
+	const projects: Misc[] = [
 		{
 			name: "indicia (current)",
 			description: "ai powered open source intelligence",
@@ -57,20 +63,37 @@ export default function Home() {
       Icon: GraduationCap,
 			color: "text-blue",
 		},
-	];
+  ];
+
+  const featured: Misc[] = [
+    {
+      name: 'CVE-2026-30368',
+      description: 'how crappy auth allowed me to control any computer with lightspeed classroom',
+      link: '/blog/lightspeed',
+      color: 'text-red',
+      Icon: Fingerprint
+    },
+    {
+      name: 'bypass schoology client side security',
+      description: 'simple script that allows you to fetch the members list of a course even if it\'s hidden',
+      link: 'https://gist.github.com/0mhx/8f7505becdd385665b548846d33844ea',
+      color: 'text-sky',
+      Icon: EyeOff
+    },
+    {
+      name: 'CVE-2025-61430',
+      description: 'vuln i found by accident that allows me to see other dns requests at my school',
+      link: '/blog/simpledns-vuln',
+      color: 'text-green',
+      Icon: BrickWall
+    }
+	]
 
 	const contact: Contact[] = [
 		{
 			name: "email - primary",
 			link: "mailto:contact@mashoorah.me",
 			display: "contact@mashoorah.me",
-			Icon: Mail,
-			color: "text-yellow",
-		},
-		{
-			name: "email - work",
-			link: "mailto:m@indicia.app",
-			display: "m@indicia.app",
 			Icon: Mail,
 			color: "text-yellow",
 		},
@@ -100,14 +123,14 @@ export default function Home() {
 			link: "https://twitter.com/mash00r",
 			display: "@mash00r",
 			Icon: Twitter,
-			color: "text-blue",
+			color: "text-sky",
 		},
 		{
 			name: "bluesky",
 			link: "https://bsky.app/profile/incognitotgt.me",
 			display: "incognitotgt.me",
 			Icon: Bluesky,
-			color: "text-sky",
+			color: "text-teal",
 		},
 		{
 			name: "linkedin",
@@ -115,6 +138,13 @@ export default function Home() {
 			display: "disabled for now",
 			Icon: Linkedin,
 			color: "text-blue",
+    },
+    {
+			name: "email - work",
+			link: "mailto:m@indicia.app",
+			display: "m@indicia.app",
+			Icon: Mail,
+			color: "text-yellow",
 		},
 	];
 
@@ -127,7 +157,7 @@ export default function Home() {
           where we build ai powered intelligence solutions for finding information online.
           <br />
           <br />
-          in my free time i sometimes tinker with random software, which sometimes has led to finding security vulnerabilities - check out my <Link href="/blog" className="text-blue hover:text-sky active:text-red font-bold">blog</Link> for some insane stuff
+          in my free time i sometimes find holes in random software - check out my <Link href="/blog" className="text-blue hover:text-sky active:text-red font-bold">blog</Link> for some insane stuff i found
 					</p>
 
 					<ul className="list-inside list-disc space-y-1">
@@ -135,13 +165,9 @@ export default function Home() {
 						<li>cross country / track</li>
 						<li>planning to major in islamic studies + computer science</li>
           </ul>
-          <br />
-					feel free to contact me regarding anything on the platforms below
 				</section>
-
 				<section className="flex flex-col gap-4">
 					<h2 className="text-2xl text-mauve font-bold">projects</h2>
-
 					<div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
 						{projects.map(({ Icon,color, ...project }) => (
 							<Card
@@ -154,11 +180,25 @@ export default function Home() {
 							/>
 						))}
 					</div>
-				</section>
-
+        </section>
+        <section className="flex flex-col gap-4">
+          <h2 className="text-2xl text-mauve font-bold">featured</h2>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {featured.map(({ Icon, color, ...item }) => (
+              <Card
+                className={`w-full ${color}`}
+                title={item.name}
+                description={item.description}
+                href={item.link}
+                key={item.name}
+                icon={Icon && <Icon className={color} />}
+              />
+            ))}
+          </div>
+        </section>
 				<section className="flex flex-col gap-4">
-					<h2 className="text-2xl text-mauve font-bold">contact</h2>
-
+          <h2 className="text-2xl text-mauve font-bold">contact</h2>
+					<p>feel free to contact me regarding anything</p>
 					<div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
 						{contact.map(({ name, display, link, Icon, color }) => (
 							<Card
