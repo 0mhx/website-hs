@@ -36,7 +36,7 @@ export async function getLatestDevelopmentActivity(): Promise<{
 			{
 				userName: "0mhx",
 				headers: {
-					authorization: `token ${process.env.GITHUB_PAT}`,
+					authorization: `token ${process.env.GITHUB_TOKEN}`,
 				},
 			},
 		);
