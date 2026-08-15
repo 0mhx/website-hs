@@ -142,13 +142,14 @@ export const GitContributionGraph = ({
 				>
 					{/* Contribution grid */}
 					<div
-						style={{
-							display: "grid",
-							gridTemplateColumns: `repeat(${weeks.length}, ${CELL_SIZE}px)`,
-							gridTemplateRows: `repeat(7, ${CELL_SIZE}px)`,
-							columnGap: CELL_GAP,
-							rowGap: CELL_GAP,
-						}}
+					style={{
+						display: "grid",
+						gridTemplateColumns: `repeat(${weeks.length}, ${CELL_SIZE}px)`,
+						gridTemplateRows: `repeat(7, ${CELL_SIZE}px)`,
+						gridAutoFlow: "column",
+						columnGap: CELL_GAP,
+						rowGap: CELL_GAP,
+					}}
 					>
 							{weeks.map((week, weekIndex) =>
 								week.map((date, dayIndex) => {
