@@ -48,14 +48,14 @@ export default async function Home() {
 			color: "text-teal",
 		},
 		{
-			name: "stardust",
+			name: "stardust (basically unmaintained)",
 			description: "isolated, disposable workspaces (kinda dead, hmu if you want to maintain)",
 			link: "aetherra/stardust",
 			Icon: Sparkles,
 			color: "text-yellow",
 		},
 		{
-			name: "schoology-frontend",
+			name: "schoology-frontend (wip, unmtd)",
 			description: "alternative frontend for schoology (wip, unmaintained)",
 			link: "0mhx/schoology-frontend",
 			Icon: GraduationCap,
@@ -205,8 +205,8 @@ export default async function Home() {
 							/>
 						))}
 					</div>
-        </section>
-        <section className="flex flex-col gap-4">
+				</section>
+				<section className="flex flex-col gap-4">
 					<h2 className="text-2xl text-mauve font-bold">activity</h2>
 					<div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
 						<DiscordStatus />

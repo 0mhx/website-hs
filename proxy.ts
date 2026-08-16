@@ -47,8 +47,6 @@ export async function proxy(request: NextRequest) {
 			return NextResponse.redirect(
 				"https://docs.google.com/document/d/1TyjXtO0YSKPCv8LT1SZbSwEsWOZ3hYzFPm6WYtmHx7g/edit?tab=t.0",
 			);
-		} else {
-			return NextResponse.next();
 		}
 	}
 	// const { os } = userAgent(request)

@@ -3,7 +3,7 @@ import { graphql } from "@octokit/graphql";
 
 export async function getLatestDevelopmentActivity(): Promise<{
 	totalContributions: number;
-  contributions: [string, number][];
+	contributions: [string, number][];
 	today: string;
 } | null> {
 	try {

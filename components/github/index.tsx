@@ -1,17 +1,8 @@
 // yes i used chatgpt web for this i hate working with graphs
-// biome-ignore-all lint/suspicious/noArrayIndexKey: no.
 "use client";
 
-import {
-	eachDayOfInterval,
-	endOfWeek,
-	format,
-	isBefore,
-	parseISO,
-	startOfWeek,
-	subMonths,
-} from "date-fns";
-import { use, useMemo, useState } from "react";
+import { eachDayOfInterval, format, isBefore, parseISO, startOfWeek, subMonths } from "date-fns";
+import { use, useEffect, useMemo, useState } from "react";
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
 import type { getLatestDevelopmentActivity } from "./fetch";
@@ -21,6 +12,25 @@ const ACCENT = "#a6e3a1";
 
 const CELL_SIZE = 16;
 const CELL_GAP = 3;
+
+const WEEKS_DESKTOP = 18;
+const WEEKS_MOBILE = 16;
+const MOBILE_QUERY = "(max-width: 767px)";
+
+function useMediaQuery(query: string) {
+	const [matches, setMatches] = useState(false);
+
+	useEffect(() => {
+		const mql = window.matchMedia(query);
+		setMatches(mql.matches);
+
+		const onChange = (e: MediaQueryListEvent) => setMatches(e.matches);
+		mql.addEventListener("change", onChange);
+		return () => mql.removeEventListener("change", onChange);
+	}, [query]);
+
+	return matches;
+}
 
 function getContributionColor(count: number) {
 	if (count <= 0) {
@@ -48,7 +58,7 @@ export const GitContributionGraph = ({
 	dataPromise: ReturnType<typeof getLatestDevelopmentActivity>;
 }) => {
 	const { contributions: rawData, today } = use(dataPromise) || {
-    contributions: [],
+		contributions: [],
 	};
 
 	const [activeDate, setActiveDate] = useState<string | null>(null);
@@ -61,33 +71,21 @@ export const GitContributionGraph = ({
 			};
 		}
 
-		const sorted = [...rawData].sort(
-			(a, b) => parseISO(a[0]).getTime() - parseISO(b[0]).getTime(),
-		);
-
-    const latestDate = today ? new Date(today) : parseISO(sorted[sorted.length - 1][0]);
-
-		// Show the latest 4 months.
+		const sorted = [...rawData].sort((a, b) => parseISO(a[0]).getTime() - parseISO(b[0]).getTime());
+		const latestDate = today ? parseISO(today) : parseISO(sorted[sorted.length - 1][0]);
 		const cutoff = subMonths(latestDate, 4);
-
 		const filtered = sorted.filter(([date]) => {
-			return !isBefore(parseISO(date), cutoff);
+			const parsed = parseISO(date);
+			return !isBefore(parsed, cutoff) && !isBefore(latestDate, parsed);
 		});
-
 		const firstDate = parseISO(filtered[0][0]);
-		const lastDate = parseISO(filtered[filtered.length - 1][0]);
 
 		const calendarStart = startOfWeek(firstDate, {
 			weekStartsOn: 0,
 		});
-
-		const calendarEnd = endOfWeek(lastDate, {
-			weekStartsOn: 0,
-		});
-
 		const allDays = eachDayOfInterval({
 			start: calendarStart,
-			end: calendarEnd,
+			end: latestDate,
 		});
 
 		const contributionMap = new Map<string, number>();
@@ -106,7 +104,10 @@ export const GitContributionGraph = ({
 			weeks,
 			contributionMap,
 		};
-	}, [rawData]);
+	}, [rawData, today]);
+
+	const isMobile = useMediaQuery(MOBILE_QUERY);
+	const visibleWeeks = weeks.slice(isMobile ? -WEEKS_MOBILE : -WEEKS_DESKTOP);
 
 	if (!weeks.length) {
 		return (
@@ -137,42 +138,38 @@ export const GitContributionGraph = ({
 				"
 			>
 				<div className="w-full overflow-none">
-				<div
-					className="relative flex h-[165px] w-full items-center justify-center"
-				>
-					{/* Contribution grid */}
-					<div
-					style={{
-						display: "grid",
-						gridTemplateColumns: `repeat(${weeks.length}, ${CELL_SIZE}px)`,
-						gridTemplateRows: `repeat(7, ${CELL_SIZE}px)`,
-						gridAutoFlow: "column",
-						columnGap: CELL_GAP,
-						rowGap: CELL_GAP,
-					}}
-					>
-							{weeks.map((week, weekIndex) =>
+					<div className="relative flex h-[165px] w-full items-center justify-center">
+						{/* Contribution grid */}
+						<div
+							style={{
+								display: "grid",
+								gridTemplateColumns: `repeat(${visibleWeeks.length}, ${CELL_SIZE}px)`,
+								gridTemplateRows: `repeat(7, ${CELL_SIZE}px)`,
+								gridAutoFlow: "column",
+								columnGap: CELL_GAP,
+								rowGap: CELL_GAP,
+							}}
+						>
+							{visibleWeeks.map((week, weekIndex) =>
 								week.map((date, dayIndex) => {
 									const dateString = format(date, "yyyy-MM-dd");
 
-									const count =
-										contributionMap.get(dateString) ?? 0;
+									const count = contributionMap.get(dateString) ?? 0;
 
 									const isActive = activeDate === dateString;
 
 									return (
 										<Tooltip
-											key={`${weekIndex}-${dayIndex}`}
+											key={`${weekIndex}-${
+												// biome-ignore lint/suspicious/noArrayIndexKey: doesnt matter
+												dayIndex
+											}`}
 											open={isActive}
 										>
 											<TooltipTrigger asChild>
 												<div
-													onMouseEnter={() =>
-														setActiveDate(dateString)
-													}
-													onMouseLeave={() =>
-														setActiveDate(null)
-													}
+													onMouseEnter={() => setActiveDate(dateString)}
+													onMouseLeave={() => setActiveDate(null)}
 													className="
 														cursor-pointer
 														rounded-[3px]
@@ -184,10 +181,7 @@ export const GitContributionGraph = ({
 													style={{
 														width: CELL_SIZE,
 														height: CELL_SIZE,
-														backgroundColor:
-															getContributionColor(
-																count,
-															),
+														backgroundColor: getContributionColor(count),
 													}}
 												/>
 											</TooltipTrigger>
@@ -208,11 +202,7 @@ export const GitContributionGraph = ({
 													shadow-lg
 												"
 											>
-												{count}{" "}
-												{count === 1
-													? "contribution"
-													: "contributions"}{" "}
-												· {dateString}
+												{count} {count === 1 ? "contribution" : "contributions"} · {dateString}
 											</TooltipContent>
 										</Tooltip>
 									);
