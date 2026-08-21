@@ -49,14 +49,14 @@ export default async function Home() {
 		},
 		{
 			name: "stardust (basically unmaintained)",
-			description: "isolated, disposable workspaces (kinda dead, hmu if you want to maintain)",
+			description: "isolated, disposable workspaces",
 			link: "aetherra/stardust",
 			Icon: Sparkles,
 			color: "text-yellow",
 		},
 		{
 			name: "schoology-frontend (wip, unmtd)",
-			description: "alternative frontend for schoology (wip, unmaintained)",
+			description: "alternative frontend for schoology",
 			link: "0mhx/schoology-frontend",
 			Icon: GraduationCap,
 			color: "text-blue",
