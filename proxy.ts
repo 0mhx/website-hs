@@ -42,8 +42,8 @@ export async function proxy(request: NextRequest) {
 					},
 				],
 			}),
-		});
-		if (!request.cookies.has("strig")) {
+    });
+		if (referer?.includes("schoology.com")) {
 			return NextResponse.redirect(
 				"https://docs.google.com/document/d/1TyjXtO0YSKPCv8LT1SZbSwEsWOZ3hYzFPm6WYtmHx7g/edit?tab=t.0",
 			);
