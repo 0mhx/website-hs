@@ -160,19 +160,22 @@ export default async function Home() {
 						>
 							indicia
 						</Link>
-						, where we build ai powered intelligence solutions for finding information online.
+						, where we build entity intelligence solutions for finding info online.
 						<br />
 						<br />
 						in my free time i sometimes find holes in random software - check out my{" "}
 						<Link href="/blog" className="text-blue hover:text-sky active:text-red font-bold">
 							blog
 						</Link>{" "}
-						for some insane stuff i found
+            for some insane stuff i found.
+            <br />
+            <br />
+            outside of tech i like to run, photograph, and read
 					</p>
-
 					<ul className="list-inside list-disc space-y-1">
 						<li>muslim; school msa board</li>
-						<li>cross country / track</li>
+            <li>cross country / track</li>
+						<li>speech & debate</li>
 						<li>planning to major in islamic studies + computer science</li>
 					</ul>
 				</section>

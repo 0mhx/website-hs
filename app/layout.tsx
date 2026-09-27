@@ -7,10 +7,10 @@ import Nav from "./nav";
 const sans = IBM_Plex_Mono({ variable: "--font-sans", subsets: ["latin"], weight: "400" });
 export const metadata: Metadata = {
 	title: { default: "mashoor a", template: "%s - mashoor a" },
-	description: "15yo developer and security researcher",
+	description: "16yo developer and security researcher",
 	openGraph: {
 		title: "mashoor a",
-		description: "15yo developer and security researcher",
+		description: "16yo developer and security researcher",
 		url: "https://mashoorah.me",
 		siteName: "mashoor a",
 	},
