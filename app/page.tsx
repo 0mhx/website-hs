@@ -151,7 +151,7 @@ export default async function Home() {
 			<div className="mx-auto flex w-full max-w-3xl flex-col gap-8 text-sm">
 				<section className="flex flex-col gap-4">
 					<p className="leading-relaxed">
-						i'm a 15y software engineer based in the dc area! i currently work as the cofounder and cio at{" "}
+						i'm a 16y software engineer based in the dc area! i currently work as the cofounder and cio at{" "}
 						<Link
 							href="https://indicia.app"
 							rel="noopener"
