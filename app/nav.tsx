@@ -7,7 +7,7 @@ export default function Nav() {
 				href="/"
 				className="inline-flex justify-center items-center py-4 hover:bg-surface2/70 rounded-md duration-200"
 			>
-				<h1 className="text-2xl font-bold text-subtext0 sm:block hidden">mashoor</h1>
+				<h1 className="text-2xl font-bold text-subtext0 block ">mashoor</h1>
 			</Link>
       <div className="flex flex-row gap-4 justify-center items-center">
         <Link href="/photography" className="text-blue hover:text-sky active:text-red font-bold">

@@ -89,7 +89,7 @@ export default async function Page() {
 				<div className="flex flex-col gap-2">
 					<h1 className="text-3xl font-bold text-mauve sm:text-4xl">photography</h1>
 
-					<p className="text-sm leading-relaxed">random photos of outdoor scenes - use indicia to find the location!</p>
+					<p className="text-sm leading-relaxed">random photos of mostly outdoor scenes</p>
 				</div>
 
 				<PhotoGrid files={dated} />

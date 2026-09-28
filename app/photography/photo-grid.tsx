@@ -74,7 +74,7 @@ function PhotoDialog({ photo, priority = false }: { photo: Photo; priority?: boo
 					className="object-cover transition duration-300 group-hover:scale-105"
 				/>
 			</DialogTrigger>
-			<DialogContent className="max-h-[calc(100dvh-2rem)] gap-0 overflow-hidden p-0 sm:max-w-4xl">
+			<DialogContent className="max-h-[calc(100dvh-2rem)] gap-0 overflow-hidden p-0 max-sm:top-[calc(50%+2rem)] max-sm:max-h-[calc(100dvh-6rem)] sm:max-w-4xl">
 				<DialogTitle className="sr-only">{photo.title}</DialogTitle>
 				<div className="flex max-h-[inherit] flex-col md:grid md:grid-cols-[3fr_2fr]">
 					<div className="relative h-[40dvh] w-full shrink-0 bg-black/40 md:h-[85dvh]">
