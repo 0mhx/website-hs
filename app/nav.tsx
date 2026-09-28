@@ -9,7 +9,11 @@ export default function Nav() {
 			>
 				<h1 className="text-2xl font-bold text-subtext0 sm:block hidden">mashoor</h1>
 			</Link>
-			<div className="flex flex-row gap-4 justify-center items-center">
+      <div className="flex flex-row gap-4 justify-center items-center">
+        <Link href="/photography" className="text-blue hover:text-sky active:text-red font-bold">
+          photography
+        </Link>
+        /
 				<Link href="/blog" className="text-blue hover:text-sky active:text-red font-bold">
 					blog
 				</Link>
