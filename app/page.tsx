@@ -7,7 +7,6 @@ import {
 	EyeOff,
 	Fingerprint,
 	GraduationCap,
-	Linkedin,
 	type LucideIcon,
 	Mail,
 	ScanEye,
@@ -129,21 +128,7 @@ export default async function Home() {
 			display: "incognitotgt.me",
 			Icon: Bluesky,
 			color: "text-teal",
-		},
-		{
-			name: "linkedin",
-			link: "https://linkedin.com/in/mashoor-ahmed",
-			display: "disabled for now",
-			Icon: Linkedin,
-			color: "text-blue",
-		},
-		{
-			name: "email - work",
-			link: "mailto:m@indicia.app",
-			display: "m@indicia.app",
-			Icon: Mail,
-			color: "text-yellow",
-		},
+		}
 	];
 
 	return (
